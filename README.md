@@ -7,3 +7,9 @@ These were selected because they are at a relatively basic level - possibly requ
 (I note that the vast majority of questions *are* package-specific, which might be important in thinking through how to teach problem solving.).
 
 Please contribute examples from your own sources on listservs, forums, etc.!
+
+While *solutions* are welcome (per [Issue #2](https://github.com/noamross/zero-dependency-problems-r/issues/2), what I'm more insterested is in the *paths to solutions for low-knowledge users*.  How would a beginner figure out the answer to this problem? e.g.
+
+-  What would one search in the help system?
+-  What would one google to figure it out?
+-  What does a minimum reproducible example look like?
