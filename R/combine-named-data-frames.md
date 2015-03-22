@@ -12,3 +12,5 @@ rl = list()
 for (i in 1:nlayers(r)) { rl[[i]] = zonal(a, r[[i]], 'sum') }
 rl
 ```
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/9)

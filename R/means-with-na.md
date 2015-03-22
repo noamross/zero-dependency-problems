@@ -16,3 +16,5 @@ c(2,3,7,8,10)
 ```
 
 Anyone have an elegant solution to this problem? 
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/13)

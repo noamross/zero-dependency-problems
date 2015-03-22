@@ -21,3 +21,5 @@ testdataframe_subset_ca <- testdataframe_subset[(if first two letters in rowname
 So, `testdataframe_subset_ca` would look like `testdataframe_subset[c(1:3),]`
 
 Perhaps the solution is something like `all[which(condition)]` but I am not sure.
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/16)

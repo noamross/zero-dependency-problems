@@ -15,3 +15,5 @@ So,
 …all the way up to 1200 where colB should equal 238 (I believe)
  
 Does anyone have any bright ideas as to how to make this happen? Perhaps a creative function using a for loop? Thanks for any thoughts that exist out there!
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/11)

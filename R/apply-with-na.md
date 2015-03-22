@@ -5,3 +5,4 @@ meanlength = apply(tadlengths, 1, mean)
 ```
 However, sometimes I only had four lengths, so there are NAs in those rows. I want to average the four lengths on those rows, but the code above gives me "NA" for those rows. I feel like there is a very, very, easy solution for this, but I can't figure it out!
 
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/8)

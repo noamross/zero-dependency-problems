@@ -4,3 +4,5 @@ I'm trying to do something that I imagine is very simple with the paste function
 `"blue" , "red" , "green"`
 
 The function `paste("blue" , "," , "red" "," "green")` results in `"blue , red , green"`. I believe this has to do with escape characters, but I can't figure it out. 
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/6)

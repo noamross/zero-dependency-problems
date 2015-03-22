@@ -39,3 +39,5 @@ I can get it to work for one class at a time by doing this:
 ```
 
 I feel like I should be able to figure this out, but after three hours of trying I thought I'd let some fresh eyes look at it.
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/4)
