@@ -1,3 +1,7 @@
+---
+source: http://stackoverflow.com/questions/25517013/make-table-show-percentages-instead-of-frequencies-in-r
+---
+
 I have some words in my dataframe `df` each belonging to category A or B. Within each category  the words may be of type 1, 2 or 3. I used the `table()` function to show how the words are distributed across the categories and types. The output looks like:
   
              category
