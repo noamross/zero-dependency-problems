@@ -4,7 +4,7 @@ This is a collection of actual problems / questions gleaned programming listserv
 
 -   **Examples and exercises:**  These serve as raw material from which to create teaching examples and exercises.
 -   **Reverse instructional design:** The problems also serve as tools for instructors to develop lessons and teaching methods.  I am currently working on a [lesson](https://github.com/noamross/getting-unstuck-R) on problem-solving approaches and "getting unstuck."  The goal of the lesson is to teach students how to solve problems
-like the ones presented here.  Determining the pathways to solving the problem for a beginner will help in developing material for the lessob.
+like the ones presented here.  Determining the pathways to solving the problem for a beginner will help in developing material for the lesson.
 
 Each problem as an associated [issue](https://github.com/noamross/zero-dependency-problems/issues) to discuss how instructors would demonstrate solving the problem, and how novices (usually those with only a [Software Carpentry](http://software-carpentry.org/) or [Data Carpentry](http://datacarpentry.org/) workshop behind them), would be able to reach the solution.  Some relevant questions to answer for each problem are:
 
@@ -17,5 +17,13 @@ These were selected because they are at a relatively basic level - just beyond t
 
 (I note that the vast majority of questions I found in the first round of searching my local R-help listserv were package-specific, though, which might be important in thinking through how to teach problem solving.).
 
-*Please contribute examples from your own sources on listservs, forums, and workshops.  (I only have R examples so far.)*
+### Contributing
+
+Input welcome!
+
+-   **New Examples**:  Add other real-world examples into the appropriate R/python/shell folder.
+-   **Discussion**:  Please give your feedback on the best way to teach/use any particular problem in its associated issue.
+
+A broader issue is how to classify the problems (by pathway to solution? Type of object/data being handled?).  Thoughts on that welcome [here](https://github.com/noamross/zero-dependency-problems/issues/3)
+
 
