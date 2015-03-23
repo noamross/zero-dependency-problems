@@ -21,9 +21,10 @@ These were selected because they are at a relatively basic level - just beyond t
 
 Input welcome!
 
--   **New Examples**:  Add other real-world examples into the appropriate R/python/shell folder.
+-   **New Examples**:  Add other real-world examples into the appropriate R/python/shell folder. One way to hunt for examples is to use [Stack Overflow advanced search](http://stackoverflow.com/help/searching) to find "bad" questions.  For instance, here's a 
+[search for low-voted, closed questions about R](http://stackoverflow.com/search?q=%5Br%5D+score%3A..0+closed%3Ayes). Questions gathered in person in workshops/classes would be great, too. 
 -   **Discussion**:  Please give your feedback on the best way to teach/use any particular problem in its associated issue.
 
-A broader issue is how to classify the problems (by pathway to solution? Type of object/data being handled?).  Thoughts on that welcome [here](https://github.com/noamross/zero-dependency-problems/issues/3)
+A broader issue is how to classify the problems (by pathway to solution? Type of object/data being handled?).  Thoughts on that welcome [here](https://github.com/noamross/zero-dependency-problems/issues/3).
 
 
