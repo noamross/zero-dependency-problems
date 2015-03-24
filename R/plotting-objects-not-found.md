@@ -25,3 +25,5 @@ I tried plotting for the first question and got:
     object 'log_weight' not found
 
 what am I doing wrong here?
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/23)
