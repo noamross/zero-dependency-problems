@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 Simple data manipulation question:
 
 I have two vectors, say:

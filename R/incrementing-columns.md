@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I have one column of numbers (colA) ranging from 1.56 to 1200. I want to create a second column (colB) that incrementally increases as colA incrementally increases. 
 
 As colA increases by 10, colB increases by 2. But this should only happen after values in colA reach 20. Before that colB equals 2. 

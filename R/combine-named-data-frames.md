@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I would like to add a title to each of the resulting dataframes and then after applying rbind, have a column in the resulting combined file that identifies each so I can compare values. 
 
 This is what the code looks like right now. I need the next steps. 

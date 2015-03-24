@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I'm trying to write a for-loop that finds the high tide in a vector of 10-minute tide recordings.  When it finds the high tide, I'd like it to spit that value into a new vector.  I generated some simple sample data (attached) that simulates the dataset with integers.  So far, I have:
 
 

@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 This seems like it should be simple, so I'm not sure why I am having trouble.  
 
 I have a data frame of character strings, like this one, in which all values should say "ab", but some of the b's are missing, so I need to correct those values.  

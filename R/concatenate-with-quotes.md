@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I'm trying to do something that I imagine is very simple with the paste function. Specifically, I need to paste several text strings together separated by commas. The catch is that I need each string to be surrounded by quotation marks. For instance,
 
 

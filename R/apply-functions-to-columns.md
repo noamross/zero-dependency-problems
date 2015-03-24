@@ -1,3 +1,6 @@
+---
+source: Local R-help listserv
+---
 
 Hi D-RUG folks.
 

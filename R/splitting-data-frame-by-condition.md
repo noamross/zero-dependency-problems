@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I would like to subset rows and columns that meet a certain condition into a new data frame. If the sum of the row or column = 0, then it is not included in the new data frame. Additionally, I would like to subset data based on a criteria looking at the rownames (or I guess it could be just a site name in a column). This seems like a fairly straight forward problem but I am pretty new to R... Any help would be greatly appreciated. I hope the code below makes it clear what I am asking.
 
 My data looks something like the data frame produced below.

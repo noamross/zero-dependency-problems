@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I have a data frame (tadlengths) with five columns of tadpole lengths for a bunch of different treatments. I want to average the five lengths. I did this by:
 
 ```

@@ -1,3 +1,7 @@
+---
+source: Local R-help listserv
+---
+
 I have a data processing question that probably has an easy answer, but I can't figure it out. I have a data set on zooplankton that includes species/genus names, and I want to lump them into families or orders. I have a separate data frame of all the species and what orders they are in. I want to make a new column in my original data frame with the larger group that the species falls into. For example:
 
 ```
