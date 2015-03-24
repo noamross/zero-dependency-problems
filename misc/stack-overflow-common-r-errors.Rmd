@@ -249,3 +249,4 @@ see R is mostly reporting that it expects to find an object, a logical value, a 
 a sub-object, or a dependency based on the users' input, but that thing isn't there. 
 This is an important concept to convey in any "error interpretation" lesson.
 
+*(Comment in the issues [here](https://github.com/noamross/zero-dependency-problems/issues/19)!)*
