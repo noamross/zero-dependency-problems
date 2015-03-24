@@ -1,0 +1,249 @@
+---
+title: "Common errors in R: An Empirical Investigation"
+author: "Noam Ross"
+date: "March 23, 2015"
+output: 
+  html_document:
+    keep_md: true
+---
+
+`r library(knitr); opts_chunk$set(cache=TRUE)`
+
+**tl; dr: Most errors in R are due to looking for something that isn't there.**
+
+In my project to [teach problem-solving skills in R](https://github.com/noamross/zero-dependency-problems), one area that has come
+up is teaching [interpretation of common error messages](https://github.com/noamross/zero-dependency-problems/issues/7).  R has
+notoriously difficult to decipher error messages.
+
+Experienced users and instructors can come up with a list of common error
+messages to teach, but how can one put oneself in a novice's shoes, and understand
+what errors they have trouble understanding?
+
+One approach is to look at forums such as [Stack Overflow](http://stackoverflow.com/),
+where people ask questions about programming problems.
+I spent some time clicking around looking for useful teaching examples.  It's actually
+hard to find *novice* questions, though, because the site does its best
+to direct people towards well-formed questions and answers. This is incredibly
+useful when one is searching for answers, but it gives less of a view into what
+kinds of problems people post onto the site.  The "long tail" of specialty
+and poorly-formed questions is both harder to navigate and too big to read manually.
+
+Thankfuly, Stack Overflow has a great API, and [David Robinson](http://varianceexplained.org/)
+has written a great R package, [stackr](https://github.com/dgrtwo/stackr), to
+access it.  Here I use stackr to find the most common types of error messages
+R users post about on Stack Overflow.
+
+First, get set up:
+
+```{r setup}
+#devtools::install_github("dgrtwo/stackr")
+library(stackr)
+library(stringi)
+library(magrittr)
+
+#Sys.setenv(STACK_EXCHANGE_KEY = "XXXXX") <-- Get a key or you'll hit the API
+#                                             See the stackr README
+
+set.seed(0)
+```
+
+
+I searched the  `[r]` tag on so for any questions with the word "Error" and got
+[almost 20,000 results](http://stackoverflow.com/search?q=%5Br%5D+%22Error%22),
+so I use stackr to repeat this query in R, making sure I repeat enough times
+to get all the data, and return the full text of the questions with 
+`filter="withbody"`.
+
+```{r getresults}
+results = stack_search(tagged = "r", body = "Error", filter="withbody",
+                       pagesize=100, num_pages=200)
+```
+
+Extracting the error messages is a bit tricky. People copy and paste messages
+in all sorts of ways, especially beginners.  After some trial and error, I came
+up with a regex filter that grabs R error messages pretty well:
+
+```{r matcherrors}
+errors = stri_extract_all_regex(results$body,
+  'Error[^:]*:.+?(?=(\\n\\n|In addition|Warning|</p>|</code>|</pre>|</blockquote>))',
+   opts_regex=stri_opts_regex(mutliline=TRUE, dotall=TRUE))
+
+errors = na.omit(unlist(errors))
+errors = stri_replace_last_regex(errors, "\\n$", "")
+
+length(errors)
+length(unique(errors))
+```
+
+Now we have a list of over 10,000 errors, but how to derive some insight from
+them?  The vast majority are unique because R uses some part of the command
+in the error message itself.  I decided to use [n-grams](http://en.wikipedia.org/wiki/N-gram),
+specifically, trigrams, to look at the most frequent word combinations in the error messages:
+
+
+```{r trigrams}
+trigrams = lapply(
+  stri_split_regex(errors, "\\s+"),
+  function(x) {
+    len = length(x)
+    if(length(x) < 3) return(NA)
+    paste(x[1:(len-2)], x[2:(len-1)], x[3:len])
+  }
+)
+
+trigram_freqs = table(unlist(trigrams)) %>%
+  sort(decreasing = TRUE) %>%
+  data.frame(trigram=names(.), freq = ., stringsAsFactors=FALSE)
+
+rownames(trigram_freqs) = NULL
+```
+
+We can plot the distribution of trigrams.  Here are the top 100:
+
+```{r plot, warning=FALSE}
+library(ggplot2)
+ggplot(trigram_freqs[1:150,], aes(x = 1:150, y=freq)) + geom_bar(stat = "identity")
+```
+
+There's a long tail, but the first 30 or so are more frequent than the rest. If
+we search for these trigrams across all the errors, we find they actually cover
+a substantial portion:
+
+```{r how-many}
+tri_regex = paste0("(", paste0(trigram_freqs$trigram[1:30], collapse="|"), ")") %>%
+  stri_replace_all_fixed("(", "\\(") %>%
+  stri_replace_all_fixed(")", "\\)")
+sum(stri_detect_regex(errors, tri_regex))/length(errors)
+```
+
+So more than 20% of the Stack Overflow R questions with "Error" contain one of
+these first 30 trigrams.  Let's look at some of them:
+
+```{r head}
+head(trigram_freqs, 15)
+```
+
+If you squint you might understand what these trigrams mean, but a better way to
+understand them is to look up a sample of functions from which they come.
+
+```{r not-find-function}
+errors[stri_detect_fixed(errors, "not find function")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+The most frequent error is "could not find function", which is generally due to
+either misspelling or failure to load a package properly.
+
+```{r error-in-if}
+errors[stri_detect_fixed(errors, "Error in if")] %>%
+  head(10) 
+```
+
+"Error in if" generally means the logical statement in "`if (XXX) { ...`" is not
+yielding a logical value.  Most of these have `missing value where TRUE/FALSE
+needed`, meaning that the variable in the `if` statement can't be found.
+
+"could not find" seems to be of the same category as "not find function".
+
+The next four trigrams all seem to come from the same type of error message.
+
+```{r eval-expr}
+errors[stri_detect_fixed(errors, "in eval(expr, envir,")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+These are all "object not found errors", where the user has written a statement
+that's looking for an object not in memory.
+
+```{r arg-true}
+errors[stri_detect_fixed(errors, "= TRUE) :")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+The "`= TRUE) :`" trigram is interesting.  It doesn't seem to match to any
+particular error type, but is common because many functions have a logical last
+argument.
+
+```{r cannot-open}
+errors[stri_detect_fixed(errors, ": cannot open")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+"`: cannot open`" comes from two types of errors: First, a file/connection can't
+be opened because R can't find it (likely because of an error in the path), and
+second, failures in `.onLoad()` because a package can't find a system dependency.
+
+Let's jump to the next few:
+
+```{r next15}
+trigram_freqs[16:30,]
+```
+
+New errors in this class are "`object of class`", "`: subscript out`"
+
+```{r object-of-class}
+errors[stri_detect_fixed(errors, "object of class")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+These errors all describe the problem of attempting to use a method on an
+object for which no such method exists.  It's the object-oriented equivalent
+of "can not find function."
+
+```{r subscript-out}
+errors[stri_detect_fixed(errors, ": subscript out")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+An easy one: "`subscript out of bounds`". These errors occur when you try to
+access an element of a vector or list that isn't there.
+
+```{r failed-for-package}
+errors[stri_detect_fixed(errors, "failed for package")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+"`failed for package`" errors are mostly about failure of packages to compile properly,
+(often because the user doesn't have the tools installed to build packages from source) Some are due to failure to load due to lack of dependencies.
+
+
+```{r unable-to-load}
+errors[stri_detect_fixed(errors, "unable to load")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+"`unable to load`" errors are also all about missing package dependencies.
+
+```{r is-not-a}
+errors[stri_detect_fixed(errors, "is not a")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+"`is not a`" errors are somewhat variable, but most seem to come from cases
+where R is expecting an object of one class and recieving another.
+
+```{r err-in-fn}
+errors[stri_detect_fixed(errors, "Error in function")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+"`Error in function`" errors are highly variabe in cause. They appear anywhere
+an anonymous function fails.
+
+```{r replacement-has}
+errors[stri_detect_fixed(errors, ": replacement has")] %>%
+  sample(10) %>% cat(sep="\n---\n")
+```
+
+"`replacement has`" errors occur when one attempts to assign a vector of values
+to a subset of an existing object and the lengths do not match up.
+
+So what have we learned from looking at these errors?  First, a small set of
+error types represent an outsize fraction of questions on Stack Overflow.  It
+would be prudent to teach the interpretation of these error types in workshops
+and classes.
+
+Secondly, almost all of these types of errors have a common theme: *R is looking
+for something that isn't there.*  If you look through the errors above, you'll
+see R is mostly reporting that it expects to find an object, a logical value, a function, a file,
+a sub-object, or a dependency based on the users' input, but that thing isn't there. 
+This is an important concept to convey in any "error interpretation" lesson.
+
