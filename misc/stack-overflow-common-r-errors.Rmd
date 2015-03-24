@@ -50,7 +50,7 @@ set.seed(0)
 ```
 
 
-I searched the  `[r]` tag on so for any questions with the word "Error" and got
+I searched the  `[r]` tag on SO for any questions with the word "Error" and got
 [almost 20,000 results](http://stackoverflow.com/search?q=%5Br%5D+%22Error%22),
 so I use stackr to repeat this query in R, making sure I repeat enough times
 to get all the data, and return the full text of the questions with 
