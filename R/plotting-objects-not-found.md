@@ -1,3 +1,7 @@
+---
+source: Student homework question
+---
+
 I tried plotting for the first question and got:
 
     > subset(ChickWeight, Chick == 1)

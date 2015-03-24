@@ -1,3 +1,7 @@
+---
+source: Student homework question
+---
+
 I'm having some trouble applying things to a subset of the dataframe I'm using.
 
     > Diet121 <- subset(ChickWeight, Diet == 1 & Time == 21)

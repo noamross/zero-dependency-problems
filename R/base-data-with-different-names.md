@@ -1,3 +1,7 @@
+---
+source: Student homework question
+---
+
 I seem to be unable to load the "beavers" data to complete the quiz. I used:
 
     > data(beavers)
