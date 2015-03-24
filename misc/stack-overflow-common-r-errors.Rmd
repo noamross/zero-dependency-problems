@@ -11,6 +11,8 @@ output:
 
 **tl; dr: Most errors in R are due to looking for something that isn't there.**
 
+*(Comment in the issues [here](https://github.com/noamross/zero-dependency-problems/issues/19)!)*
+
 In my project to [teach problem-solving skills in R](https://github.com/noamross/zero-dependency-problems), one area that has come
 up is teaching [interpretation of common error messages](https://github.com/noamross/zero-dependency-problems/issues/7).  R has
 notoriously difficult to decipher error messages.
