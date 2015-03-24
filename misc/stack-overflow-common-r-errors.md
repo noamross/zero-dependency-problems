@@ -162,7 +162,7 @@ head(trigram_freqs, 15)
 ```
 
 If you squint you might understand what these trigrams mean, but a better way to
-understand them is to look up a sample of functions from which they come.
+understand them is to look up a sample of error messages from which they come.
 
 
 ```r
