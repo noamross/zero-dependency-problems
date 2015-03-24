@@ -44,7 +44,7 @@ library(stringi)
 library(magrittr)
 
 #Sys.setenv(STACK_EXCHANGE_KEY = "XXXXX") <-- Get a key or you'll hit the API
-#                                             See the stackr README
+#                                             rate limites. See the stackr README
 
 set.seed(0)
 ```
