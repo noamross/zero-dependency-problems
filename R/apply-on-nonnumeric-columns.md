@@ -22,3 +22,5 @@ This works fine, and gives the subset I want, but when I try to apply the mean t
     argument is not numeric or logical: returning NA
 
 I'm assuming I'm doing something stupid such as not attaching something correctly. Is something wrong with 'mean'?
+
+[Issue](https://github.com/noamross/zero-dependency-problems/issues/21) 
