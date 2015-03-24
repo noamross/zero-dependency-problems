@@ -232,7 +232,7 @@ errors[stri_detect_fixed(errors, "Error in if")] %>%
 
 "Error in if" generally means the logical statement in "`if (XXX) { ...`" is not
 yielding a logical value.  Most of these have `missing value where TRUE/FALSE
-needed`, meaning that the variable in the `if` statement can't be found.
+needed`, meaning that the variable in `XXX` has `NA` in it.
 
 "could not find" seems to be of the same category as "not find function".
 
