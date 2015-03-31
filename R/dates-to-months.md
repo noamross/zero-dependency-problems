@@ -11,7 +11,7 @@ I am trying to convert it into a month and store it in a different column.
 
 How can I do it?
 
-    Intended output
+Intended output
     
     June
     July
