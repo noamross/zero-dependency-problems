@@ -17,6 +17,8 @@ These were selected because they are at a relatively basic level - just beyond t
 
 (I note that the vast majority of questions I found in the first round of searching my local R-help listserv were package-specific, though, which might be important in thinking through how to teach problem solving.).
 
+Also in this repo you'll find [an analysis of R errors on Stack Overflow](https://github.com/noamross/zero-dependency-problems/blob/master/misc/stack-overflow-common-r-errors.md), which is a larger-scale exercise in identifying the types of (R) problems that beginners may encounter.
+
 ### Contributing
 
 Input welcome!
